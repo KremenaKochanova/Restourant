@@ -1,6 +1,7 @@
 package ProjectSystems.Restourant.Controllers;
 
 import ProjectSystems.Restourant.Entitis.Dish;
+import ProjectSystems.Restourant.Services.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -12,6 +13,7 @@ public class MenuController {
 
     @GetMapping("/menu")
     public List<Dish> getMenu() {
+
         return menuService.getAllDishes();
     }
 
