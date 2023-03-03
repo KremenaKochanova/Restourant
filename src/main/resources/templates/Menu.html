@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Menu</title>
+</head>
+<body>
+<h1>Menu</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Type</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dish : ${dishes}">
+        <td th:text="${dish.name}"></td>
+        <td th:text="${dish.price}"></td>
+        <td th:text="${dish.type}"></td>
+        <td>
+            <form method="post" th:action="@{/menu/add-to-cart}">
+                <input type="hidden" name="dishId" th:value="${dish.id}"/>
+                <button type="submit">Add to cart</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
