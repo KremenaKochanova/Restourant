@@ -45,4 +45,7 @@ public class Cook {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Object getUsername() {
+    }
 }
