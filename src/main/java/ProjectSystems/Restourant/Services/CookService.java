@@ -39,7 +39,7 @@ public class CookService {
         return orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid order ID"));
     }
-    public Cook authenticateCook(String username, String password) {
+    public static Cook authenticateCook(String username, String password) {
         Cook cook = CookRepository.findByUsername(username);
         if (cook != null && cook.getPassword().equals(password)) {
             return cook;

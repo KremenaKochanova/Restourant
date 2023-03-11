@@ -1,6 +1,7 @@
 package ProjectSystems.Restourant.Controllers;
 
 import ProjectSystems.Restourant.Entitis.Waiter;
+import ProjectSystems.Restourant.Services.InvalidPasswordException;
 import ProjectSystems.Restourant.Services.WaiterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,8 +27,8 @@ public class WaiterController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute("waiter") Waiter waiter, HttpSession session) {
-        Waiter authenticatedWaiter = waiterService.authenticateWaiter(waiter.getUsername(), waiter.getPassword());
+    public String login(@ModelAttribute("waiter") Waiter waiter, HttpSession session) throws InvalidPasswordException {
+        Waiter authenticatedWaiter = waiterService.authenticateWaiter(waiter.getName(), waiter.getPassword());
         if (authenticatedWaiter == null) {
             return "redirect:/waiter/login?error";
         }

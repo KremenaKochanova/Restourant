@@ -8,8 +8,11 @@ import org.springframework.stereotype.Repository;
     @Repository
     public interface CookRepository extends JpaRepository<Cook, Long> {
         Cook findByUsernameAndPassword(String username, String password);
-         static Cook findByUsername(String username);
+
+        static Cook findByUsername(String username) {
+            return null;
         }
+    }
 
 
 

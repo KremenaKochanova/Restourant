@@ -1,5 +1,7 @@
 package ProjectSystems.Restourant.Entitis;
 
+import ProjectSystems.Restourant.OrderStatus;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -84,5 +86,8 @@ public class Order {
 
     public void setCreationTime(LocalDateTime now) {
 
+    }
+
+    public void setStatus(OrderStatus active) {
     }
 }

@@ -1,15 +1,20 @@
 package ProjectSystems.Restourant.Services;
 
 import ProjectSystems.Restourant.Entitis.Order;
-import ProjectSystems.Restourant.Entitis.OrderItem;
 import ProjectSystems.Restourant.Entitis.Table;
+import ProjectSystems.Restourant.Entitis.Waiter;
 import ProjectSystems.Restourant.OrderStatus;
 import ProjectSystems.Restourant.Repositories.OrderRepository;
 import ProjectSystems.Restourant.Repositories.TableRepository;
+import ProjectSystems.Restourant.Repositories.WaiterRepository;
 import ProjectSystems.Restourant.Services.OrderNotModifiableException;
+import ProjectSystems.Restourant.Services.TableOccupiedException;
+import ProjectSystems.Restourant.Services.TableNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,12 +23,15 @@ public class WaiterService {
 
     private final TableRepository tableRepository;
     private final OrderRepository orderRepository;
+    private final WaiterRepository waiterRepository;
+    private final PasswordEncoder passwordEncoder;
 
-
-    public WaiterService(TableRepository tableRepository, OrderRepository orderRepository) {
+    @Autowired
+    public WaiterService(TableRepository tableRepository, OrderRepository orderRepository, WaiterRepository waiterRepository, PasswordEncoder passwordEncoder) {
         this.tableRepository = tableRepository;
         this.orderRepository = orderRepository;
-
+        this.waiterRepository = waiterRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<Table> getTables() {
@@ -60,5 +68,18 @@ public class WaiterService {
     }
 
     private Order getOrderById(Long id) {
+        return orderRepository.findById(id)
+                .orElseThrow(() -> new OrderNotFoundException("Order with id " + id + " not found."));
+    }
+
+    public Waiter authenticateWaiter(String username, String password) throws InvalidPasswordException {
+        Waiter waiter = waiterRepository.findByUsername(username);
+        if (waiter == null) {
+            throw new UsernameNotFoundException("Username " + username + " not found.");
+        }
+        if (!passwordEncoder.matches(password, waiter.getPassword())) {
+            throw new InvalidPasswordException("Invalid password.");
+        }
+        return waiter;
     }
 }
