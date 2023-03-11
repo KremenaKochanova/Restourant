@@ -1,7 +1,9 @@
 package ProjectSystems.Restourant.Services;
 
+import ProjectSystems.Restourant.Entitis.Cook;
 import ProjectSystems.Restourant.Entitis.Order;
 import ProjectSystems.Restourant.OrderStatus;
+import ProjectSystems.Restourant.Repositories.CookRepository;
 import ProjectSystems.Restourant.Repositories.OrderRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ public class CookService {
     private final OrderRepository orderRepository;
 
     public CookService(OrderRepository orderRepository) {
+
         this.orderRepository = orderRepository;
     }
 
@@ -36,4 +39,13 @@ public class CookService {
         return orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid order ID"));
     }
+    public Cook authenticateCook(String username, String password) {
+        Cook cook = CookRepository.findByUsername(username);
+        if (cook != null && cook.getPassword().equals(password)) {
+            return cook;
+        } else {
+            return null;
+        }
+    }
+
 }

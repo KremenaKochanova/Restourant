@@ -1,8 +1,10 @@
 package ProjectSystems.Restourant.Entitis;
 
 import javax.persistence.*;
+import javax.persistence.Table;
 
 @Entity
+@Table
 public class Dish {
 
     @Id

@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
 
         @PostMapping("/login")
         public String login(@ModelAttribute("cook") Cook cook, HttpSession session) {
-            Cook authenticatedCook = CookService.authenticateCook(cook.getUsername(), cook.getPassword());
+            Cook authenticatedCook = CookService.authenticateCook(cook.getName(), cook.getPassword());
             if (authenticatedCook == null) {
                 return "redirect:/cook/login?error";
             }

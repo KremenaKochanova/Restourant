@@ -4,6 +4,7 @@ package ProjectSystems.Restourant.Entitis;
 import javax.persistence.*;
 
 @Entity
+@javax.persistence.Table
 public class Table {
 
     @Id

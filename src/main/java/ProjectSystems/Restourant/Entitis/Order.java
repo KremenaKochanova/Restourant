@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@javax.persistence.Table
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +21,9 @@ public class Order {
 
     @ManyToMany
     private List<Dish> dishes;
+
+    public Order() {
+    }
 
     public Order(Long id, LocalDateTime creationDateTime, String status, Table table, Waiter waiter, List<Dish> dishes) {
         this.id = id;

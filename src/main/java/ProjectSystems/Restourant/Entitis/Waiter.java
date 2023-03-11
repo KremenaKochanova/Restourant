@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@javax.persistence.Table(name = "Waiter", indexes = {
+        @Index(name = "idx_waiter_id", columnList = "id")
+})
 public class Waiter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +19,9 @@ public class Waiter {
 
     @ManyToMany
     private List<Table> tables;
+
+    public Waiter() {
+    }
 
     public Waiter(Long id, String name, String password, List<Order> orders, List<Table> tables) {
         this.id = id;

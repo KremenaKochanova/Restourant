@@ -22,6 +22,9 @@ public class OrderItem {
     @Column(name = "price")
     private BigDecimal price;
 
+    public OrderItem() {
+    }
+
     public OrderItem(MenuItem menuItem, int quantity) {
     }
 

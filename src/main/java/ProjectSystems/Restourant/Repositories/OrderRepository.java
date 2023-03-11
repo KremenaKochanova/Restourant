@@ -16,6 +16,7 @@ import java.util.Optional;
         List<Order> findByTableNumberAndStatusNotOrderByCreationDateTimeDesc(String tableNumber, String status);
 
     Order findByStatus(OrderStatus aNew);
+
+    List<Order> findByTableAndStatus(Table table, OrderStatus status);
+
 }
-
-
