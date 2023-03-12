@@ -4,12 +4,15 @@ package ProjectSystems.Restourant.Entitis;
 import javax.persistence.*;
 
 @Entity
-@javax.persistence.Table
+@javax.persistence.Table(name = "tables")
+
 public class Table {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, unique = true)
     private Long id;
+    @Column(nullable = false)
     private String number;
 
     public Table() {

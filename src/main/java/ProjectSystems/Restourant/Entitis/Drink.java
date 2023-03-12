@@ -4,23 +4,30 @@ import javax.persistence.*;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dishes")
-
-public class Dish {
-
+@Table (name= "drinks")
+public class Drink {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(nullable = false, unique = true)
     private String name;
+
     @Column(nullable = false)
     private Double price;
-    @Column(nullable = false)
-    private String type;
 
-    public Dish() {
+    @Column(nullable = false)
+    private String description;
+
+    public Drink() {
     }
 
+    public Drink(Long id, String name, Double price, String description) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -46,18 +53,11 @@ public class Dish {
         this.price = price;
     }
 
-    public String getType() {
-        return type;
+    public String getDescription() {
+        return description;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Dish(Long id, String name, Double price, String type) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.type = type;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

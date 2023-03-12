@@ -1,19 +1,20 @@
 package ProjectSystems.Restourant.Entitis;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="Cook")
 public class Cook {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, unique = true)
     private String name;
+    @Column(nullable = false, unique = true)
     private String password;
+
 
     public Cook() {
     }
