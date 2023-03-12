@@ -1,6 +1,6 @@
 package ProjectSystems.Restourant.Entitis;
 
-import ProjectSystems.Restourant.OrderStatus;
+import ProjectSystems.Restourant.Enum.OrderStatus;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

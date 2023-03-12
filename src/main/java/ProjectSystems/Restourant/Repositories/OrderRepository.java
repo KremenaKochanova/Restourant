@@ -2,7 +2,7 @@ package ProjectSystems.Restourant.Repositories;
 
 import ProjectSystems.Restourant.Entitis.Order;
 import ProjectSystems.Restourant.Entitis.Table;
-import ProjectSystems.Restourant.OrderStatus;
+import ProjectSystems.Restourant.Enum.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +15,7 @@ import java.util.Optional;
         List<Order> findByStatusNotOrderByCreationDateTimeDesc(String status);
         List<Order> findByTableNumberAndStatusNotOrderByCreationDateTimeDesc(String tableNumber, String status);
 
-    Order findByStatus(OrderStatus aNew);
+    Order findByStatus(ProjectSystems.Restourant.Enum.OrderStatus aNew);
 
     List<Order> findByTableAndStatus(Table table, OrderStatus status);
 

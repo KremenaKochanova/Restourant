@@ -3,13 +3,10 @@ package ProjectSystems.Restourant.Services;
 import ProjectSystems.Restourant.Entitis.Order;
 import ProjectSystems.Restourant.Entitis.Table;
 import ProjectSystems.Restourant.Entitis.Waiter;
-import ProjectSystems.Restourant.OrderStatus;
+import ProjectSystems.Restourant.Enum.OrderStatus;
 import ProjectSystems.Restourant.Repositories.OrderRepository;
 import ProjectSystems.Restourant.Repositories.TableRepository;
 import ProjectSystems.Restourant.Repositories.WaiterRepository;
-import ProjectSystems.Restourant.Services.OrderNotModifiableException;
-import ProjectSystems.Restourant.Services.TableOccupiedException;
-import ProjectSystems.Restourant.Services.TableNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -44,16 +41,16 @@ public class WaiterService {
     }
 
     public List<Order> getActiveOrders() {
-        return (List<Order>) orderRepository.findByStatus(OrderStatus.ACTIVE);
+        return (List<Order>) orderRepository.findByStatus(ProjectSystems.Restourant.Enum.OrderStatus.ACTIVE);
     }
 
     public Order createOrder(Order order) {
         // Check if there is already an active order for the table
-        List<Order> activeOrders = orderRepository.findByTableAndStatus(order.getTable(), OrderStatus.ACTIVE);
+        List<Order> activeOrders = orderRepository.findByTableAndStatus(order.getTable(), ProjectSystems.Restourant.Enum.OrderStatus.ACTIVE);
         if (!activeOrders.isEmpty()) {
             throw new TableOccupiedException("Table " + order.getTable().getNumber() + " is already occupied.");
         }
-        order.setStatus(OrderStatus.ACTIVE);
+        order.setStatus(ProjectSystems.Restourant.Enum.OrderStatus.ACTIVE);
         order.setCreationTime(LocalDateTime.now());
         return orderRepository.save(order);
     }

@@ -2,7 +2,7 @@ package ProjectSystems.Restourant.Services;
 
 import ProjectSystems.Restourant.Entitis.Cook;
 import ProjectSystems.Restourant.Entitis.Order;
-import ProjectSystems.Restourant.OrderStatus;
+import ProjectSystems.Restourant.Enum.OrderStatus;
 import ProjectSystems.Restourant.Repositories.CookRepository;
 import ProjectSystems.Restourant.Repositories.OrderRepository;
 import org.springframework.stereotype.Service;
@@ -20,12 +20,12 @@ public class CookService {
     }
 
     public List<Order> getNewOrders() {
-        return (List<Order>) orderRepository.findByStatus(OrderStatus.NEW);
+        return (List<Order>)(orderRepository.findByStatus(ProjectSystems.Restourant.Enum.OrderStatus.NEW));
     }
 
     public void startCooking(Long orderId) {
         Order order = getOrderById(orderId);
-        order.setStatus(String.valueOf(OrderStatus.COOKING));
+        order.setStatus(String.valueOf(ProjectSystems.Restourant.Enum.OrderStatus.COOKING));
         orderRepository.save(order);
     }
 
