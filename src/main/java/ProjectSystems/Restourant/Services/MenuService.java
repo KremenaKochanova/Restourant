@@ -1,7 +1,9 @@
 package ProjectSystems.Restourant.Services;
 
 import ProjectSystems.Restourant.Entitis.Dish;
+import ProjectSystems.Restourant.Entitis.Drink;
 import ProjectSystems.Restourant.Repositories.DishRepository;
+import ProjectSystems.Restourant.Repositories.DrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +34,27 @@ public class MenuService {
 
     public void deleteDish(Long id) {
         dishRepository.deleteById(id);
+    }
+    @Autowired
+    private DrinkRepository drinkRepository;
+
+    public List<Drink> getAllDrink() {
+        return drinkRepository.findAll();
+    }
+
+    public void addDrink(Drink drink) {
+        drinkRepository.save(drink);
+    }
+
+    public void updateDrink(Long id, Drink drink) {
+        Drink existingDrink = drinkRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Drink not found"));
+        existingDrink.setName(drink.getName());
+        existingDrink.setPrice(drink.getPrice());
+        drinkRepository.save(existingDrink);
+    }
+
+    public void deleteDrink(Long id) {
+        drinkRepository.deleteById(id);
     }
 }

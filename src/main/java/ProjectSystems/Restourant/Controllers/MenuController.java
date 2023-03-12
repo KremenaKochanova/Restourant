@@ -1,6 +1,7 @@
 package ProjectSystems.Restourant.Controllers;
 
 import ProjectSystems.Restourant.Entitis.Dish;
+import ProjectSystems.Restourant.Entitis.Drink;
 import ProjectSystems.Restourant.Services.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +32,21 @@ public class MenuController {
     public void deleteDish(@PathVariable Long id) {
         menuService.deleteDish(id);
     }
+
+    @PostMapping("/menu")
+    public void addDrink(@RequestBody Drink drink) {
+        menuService.addDrink(drink);
+    }
+
+    @PutMapping("/menu/{id}")
+    public void updateDrink(@PathVariable Long id, @RequestBody Drink drink) {
+        menuService.updateDrink(id, drink);
+    }
+
+    @DeleteMapping("/menu/{id}")
+    public void deleteDrink(@PathVariable Long id) {
+        menuService.deleteDrink(id);
+    }
+
 }
 
