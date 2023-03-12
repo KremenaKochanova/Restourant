@@ -12,6 +12,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private LocalDateTime creationDateTime;
     private String status;
 

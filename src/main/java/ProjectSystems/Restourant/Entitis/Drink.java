@@ -4,8 +4,9 @@ import javax.persistence.*;
 import javax.persistence.Table;
 
 @Entity
-@Table (name= "drinks")
+@Table(name="Drink")
 public class Drink {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,19 +15,13 @@ public class Drink {
     private String name;
 
     @Column(nullable = false)
-    private Double price;
+    private double price;
 
-    @Column(nullable = false)
-    private String description;
+    public Drink() {}
 
-    public Drink() {
-    }
-
-    public Drink(Long id, String name, Double price, String description) {
-        this.id = id;
+    public Drink(String name, double price) {
         this.name = name;
         this.price = price;
-        this.description = description;
     }
 
     public Long getId() {
@@ -45,19 +40,11 @@ public class Drink {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }
