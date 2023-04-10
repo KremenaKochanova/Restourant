@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    .container {
+max-width: 800px;
+margin: 0 auto;
+text-align: center;
+font-size: 1.2rem;
+}
+
+.table {
+margin-top: 30px;
+border-collapse: collapse;
+width: 100%;
+max-width: 800px;
+}
+
+.table td, .table th {
+border: 1px solid #ddd;
+padding: 8px;
+}
+
+.table th {
+text-align: center;
+background-color: #f2f2f2;
+}
+
+.table-group-divider td {
+border-top: 2px solid #ddd;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+.table img {
+max-width: 100%;
+height: auto;
+display: block;
+margin: 0 auto;
+}
+</style>
+
+    <title>МЕНЮ</title>
+</head>
+<body>
+<div class="container">
+    <table class="table">
+
+    <thead>
+    <tr>
+        <th scope="col">Наименование</th>
+        <th scope="col">Цена</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    <tr>
+        <td colspan="3"><strong>САЛАТИ</strong></td>
+    </tr>
+    <tr>
+        <td>Салата Цезар</td>
+        <td>10.00</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Моркови по корейски</td>
+        <td>6.00</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Зелен микс</td>
+        <td>8.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Шопска салата</td>
+        <td>7.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Салата направи сам</td>
+        <td>10.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td colspan="3"><strong>СУПИ</strong></td>
+    </tr>
+    <tr>
+        <td>Пилешка супа</td>
+        <td>2.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Зеленчукова супа</td>
+        <td>3.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Таратор</td>
+        <td>1.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Супа топчета</td>
+        <td>3.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Крем супа с крутони</td>
+        <td>3.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td colspan="3"><img src="hrani.jpg" class="rounded float-end" alt="hrani.jpg"></td>
+    </tr>
+    <tr>
+        <td colspan="3"><strong>ОСНОВНИ</strong></td>
+    </tr>
+    <tr>
+        <td>Спагети Болонезе</td>
+        <td>13.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Спагети Карбонара</td>
+        <td>11.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Пица "Маргарита"</td>
+        <td>8.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Стек-свинско</td>
+        <td>12.89</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Стек-телешко</td>
+        <td>13.89</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td colspan="3"><img src="hrani2.jpg" class="rounded float-end" alt="hrani2.jpg"></td>
+    </tr>
+    <tr>
+        <td colspan="3"><strong>ДЕСЕРТИ</strong></td>
+    </tr>
+    <tr>
+        <td>Шоколадова торта</td>
+        <td>5.20</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Сладолед микс</td>
+        <td>5.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Ябълков пай</td>
+        <td>4.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Десерт без захар</td>
+        <td>4.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Чийз кейк</td>
+        <td>4.79</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td colspan="3"><img src="desert.jpg" class="rounded float-end" alt="desert.jpg"></td>
+    </tr>
+    <tr>
+        <td colspan="3"><strong>НАПИТКИ</strong></td>
+    </tr>
+    <tr>
+        <td>Минерална вода</td>
+        <td>1.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Газирана вода</td>
+        <td>1.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Фреш-цитроси микс</td>
+        <td>5.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Пепси</td>
+        <td>2.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td>Сок без захар</td>
+        <td>3.99</td>
+        <td><button>Добави в поръчка</button></td>
+    </tr>
+    <tr>
+        <td colspan="3"><img src="napitki2.jpg" class="rounded float-end" alt="napitki2.jpg"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,7 +1,0 @@
-.free {
-  background-color: green;
-}
-
-.occupied {
-  background-color: red;
-}

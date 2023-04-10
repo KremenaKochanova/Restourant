@@ -1,6 +1,5 @@
 package ProjectSystems.Restourant.Entitis;
 
-
 import javax.persistence.*;
 
 @Entity

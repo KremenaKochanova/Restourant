@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Поръчки</title>
+</head>
+<body>
+<h1>Поръчки</h1>
+
+<form action="createOrder" method="post">
+  <label for="table">Маса:</label>
+  <select name="table" id="table">
+    <option value="1">Маса 1</option>
+    <option value="2">Маса 2</option>
+    <option value="3">Маса 3</option>
+    <!-- добавете опции за всички маси -->
+  </select>
+  <br><br>
+
+  <label for="dish">Ястие:</label>
+  <select name="dish" id="dish">
+    <option value="1">Пилешка супа</option>
+    <option value="2">Кюфтета</option>
+    <option value="3">Пържола</option>
+    <!-- добавете опции за всички ястия -->
+  </select>
+  <label for="quantity">Количество:</label>
+  <input type="number" name="quantity" id="quantity" min="1" value="1">
+  <button type="submit">Добави</button>
+  <br><br>
+
+  <!-- добавете таблица с всички ястия в поръчката -->
+
+  <label for="total">Обща цена:</label>
+  <input type="text" name="total" id="total" readonly>
+  <br><br>
+
+  <button type="submit">Запази поръчка</button>
+</form>
+</body>
+</html>

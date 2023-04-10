@@ -1,11 +1,14 @@
 package ProjectSystems.Restourant.Entitis;
 
+import ProjectSystems.Restourant.Enum.Role;
+
 import javax.persistence.*;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Cook")
 public class Cook {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +17,9 @@ public class Cook {
     private String name;
     @Column(nullable = false, unique = true)
     private String password;
+    @Column(nullable = false, unique = true)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 
     public Cook() {
@@ -49,5 +55,12 @@ public class Cook {
         this.password = password;
     }
 
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
 }

@@ -1,5 +1,6 @@
 package ProjectSystems.Restourant.Entitis;
 
+import ProjectSystems.Restourant.Enum.Role;
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,9 +11,25 @@ import java.util.List;
 public class Waiter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(nullable = false, unique = true)
     private Long id;
+    @Column(nullable = false, unique = true)
     private String name;
+    @Column(nullable = false, unique = true)
     private String password;
+    @Column(nullable = false, unique = true)
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
 
     @OneToMany(mappedBy = "waiter")
     private List<Order> orders;

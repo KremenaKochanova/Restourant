@@ -12,6 +12,16 @@ import java.util.List;
 @Service
 public class CookService {
 
+
+    public static Cook authenticateCook(String name, String password) {
+        Cook cook = CookRepository.findByName(name);
+        if (cook != null && cook.getPassword().equals(password)) {
+            return cook;
+        } else {
+            return null;
+        }
+    }
+
     private final OrderRepository orderRepository;
 
     public CookService(OrderRepository orderRepository) {
@@ -39,13 +49,8 @@ public class CookService {
         return orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid order ID"));
     }
-    public static Cook authenticateCook(String username, String password) {
-        Cook cook = CookRepository.findByUsername(username);
-        if (cook != null && cook.getPassword().equals(password)) {
-            return cook;
-        } else {
-            return null;
-        }
-    }
 
+    public boolean authenticate(String username, String password) {
+        return false;
+    }
 }

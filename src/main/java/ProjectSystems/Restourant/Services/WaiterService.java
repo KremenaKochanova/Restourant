@@ -69,14 +69,18 @@ public class WaiterService {
                 .orElseThrow(() -> new OrderNotFoundException("Order with id " + id + " not found."));
     }
 
-    public Waiter authenticateWaiter(String username, String password) throws InvalidPasswordException {
-        Waiter waiter = waiterRepository.findByUsername(username);
+    public Waiter authenticateWaiter(String name, String password) throws InvalidPasswordException {
+        Waiter waiter = waiterRepository.findByName(name);
         if (waiter == null) {
-            throw new UsernameNotFoundException("Username " + username + " not found.");
+            throw new UsernameNotFoundException("Username " + name + " not found.");
         }
         if (!passwordEncoder.matches(password, waiter.getPassword())) {
             throw new InvalidPasswordException("Invalid password.");
         }
         return waiter;
+    }
+
+    public boolean authenticate(String username, String password) {
+        return false;
     }
 }

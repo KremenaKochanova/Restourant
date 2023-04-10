@@ -1,32 +1,62 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Menu</title>
+  <meta charset="UTF-8">
+  <title>МЕНЮ</title>
 </head>
 <body>
-<h1>Menu</h1>
-<table>
+<div class="container">
+  <table class="table">
+
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Type</th>
-        <th>Action</th>
+      <th scope="col">Наименование</th>
+      <th scope="col">Цена</th>
+      <th scope="col"></th>
     </tr>
     </thead>
-    <tbody>
-    <tr th:each="dish : ${dishes}">
-        <td th:text="${dish.name}"></td>
-        <td th:text="${dish.price}"></td>
-        <td th:text="${dish.type}"></td>
-        <td>
-            <form method="post" th:action="@{/menu/add-to-cart}">
-                <input type="hidden" name="dishId" th:value="${dish.id}"/>
-                <button type="submit">Add to cart</button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
+
+
+<!-- Форма за добавяне на ястие -->
+<form action="#" th:action="@{/menu/add-dish}" th:object="${dish}" method="post">
+  <input type="text" th:field="*{name}" placeholder="Name"/>
+  <input type="text" th:field="*{type}" placeholder="Type"/>
+  <input type="text" th:field="*{price}" placeholder="Price"/>
+  <button type="submit">Add Dish</button>
+</form>
+
+<!-- Таблица с ястията -->
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Извеждане на всички ястия от менюто -->
+  <tr th:each="dish : ${dishes}">
+    <td th:text="${dish.name}"></td>
+    <td th:text="${dish.type}"></td>
+    <td th:text="${dish.price}"></td>
+    <td>
+      <!-- Форма за редактиране на ястието -->
+      <form action="#" th:action="@{/menu/edit-dish/{id}(id=${dish.id})}" th:object="${dish}" method="post">
+        <input type="text" th:field="*{name}" placeholder="Name"/>
+        <input type="text" th:field="*{type}" placeholder="Type"/>
+        <input type="text" th:field="*{price}" placeholder="Price"/>
+        <button type="submit">Save</button>
+      </form>
+
+      <!-- Форма за изтриване на ястието -->
+      <form action="#" th:action="@{/menu/delete-dish/{id}(id=${dish.id})}" method="get">
+        <button type="submit">Delete</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
 </table>
 </body>
 </html>

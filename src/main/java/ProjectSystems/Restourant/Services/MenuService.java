@@ -35,6 +35,8 @@ public class MenuService {
     public void deleteDish(Long id) {
         dishRepository.deleteById(id);
     }
+
+
     @Autowired
     private DrinkRepository drinkRepository;
 

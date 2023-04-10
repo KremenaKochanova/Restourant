@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List Dishes</title>
+</head>
+<meta charset="UTF-8">
+<body>
+<h1>List Dishes</h1>
+<a href="/dishes/add">Add Dish</a><br/><br/>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Type</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="dish : ${dishes}">
+        <td th:text="${dish.id}"></td>
+        <td th:text="${dish.name}"></td>
+        <td th:text="${dish.price}"></td>
+        <td th:text="${dish.type}"></td>
+        <td>
+            <a th:href="@{/dishes/edit/{id}(id=${dish.id})}">Edit</a>
+            <a th:href="@{/dishes/delete/{id}(id=${dish.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

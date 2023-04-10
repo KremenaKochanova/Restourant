@@ -1,52 +1,63 @@
 package ProjectSystems.Restourant.Controllers;
 
 import ProjectSystems.Restourant.Entitis.Dish;
-import ProjectSystems.Restourant.Entitis.Drink;
+import ProjectSystems.Restourant.Repositories.DishRepository;
 import ProjectSystems.Restourant.Services.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.List;
 
-@RestController
+@Controller
+@RequestMapping("/menu")
 public class MenuController {
+
     @Autowired
     private MenuService menuService;
 
-    @GetMapping("/menu")
-    public List<Dish> getMenu() {
+    private DishRepository dishRepository;
 
-        return menuService.getAllDishes();
+
+    @GetMapping("")
+    public String getMenu(Model model) {
+        List<Dish> dishes = menuService.getAllDishes();
+        model.addAttribute("dishes", dishes);
+        return "menu";
     }
 
-    @PostMapping("/menu")
-    public void addDish(@RequestBody Dish dish) {
+       @GetMapping("/add-dish")
+    public String showAddDishForm(@RequestParam("name") String name, @RequestParam("type") String type, @RequestParam("price") double price, Model model) {
+        Dish dish = new Dish(name, type, price);
+        model.addAttribute("dish", dish);
+        return "add-dish-form";
+    }
+
+    @PostMapping("/add-dish")
+    public String addDish(@ModelAttribute("dish") Dish dish) {
         menuService.addDish(dish);
+        return "redirect:/menu";
     }
 
-    @PutMapping("/menu/{id}")
-    public void updateDish(@PathVariable Long id, @RequestBody Dish dish) {
+    @GetMapping("/edit-dish/{id}")
+    public String showEditDishForm(@PathVariable("id") long id, Model model) {
+        Dish dish = dishRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        model.addAttribute("dish", dish);
+        return "edit-dish-form";
+    }
+
+    @PostMapping("/edit-dish/{id}")
+    public String editDish(@PathVariable("id") long id, @ModelAttribute("dish") Dish dish) {
         menuService.updateDish(id, dish);
+        return "redirect:/menu";
     }
 
-    @DeleteMapping("/menu/{id}")
-    public void deleteDish(@PathVariable Long id) {
+    @GetMapping("/delete-dish/{id}")
+    public String deleteDish(@PathVariable("id") long id) {
         menuService.deleteDish(id);
+        return "redirect:/menu";
     }
-
-    @PostMapping("/menu")
-    public void addDrink(@RequestBody Drink drink) {
-        menuService.addDrink(drink);
-    }
-
-    @PutMapping("/menu/{id}")
-    public void updateDrink(@PathVariable Long id, @RequestBody Drink drink) {
-        menuService.updateDrink(id, drink);
-    }
-
-    @DeleteMapping("/menu/{id}")
-    public void deleteDrink(@PathVariable Long id) {
-        menuService.deleteDrink(id);
-    }
-
 }
-

@@ -9,6 +9,8 @@ public enum OrderStatus {
     PAID("Paid"),
     ACTIVE("isFree");
 
+    public static final OrderStatus CREATED = NEW;
+    public static final OrderStatus IN_PROGRESS = COOKING ;
     private final String value;
 
     OrderStatus(String value) {
@@ -18,5 +20,7 @@ public enum OrderStatus {
     public String getValue() {
         return value;
     }
+
+
 }
 

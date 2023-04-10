@@ -25,6 +25,9 @@ public class OrderItem {
     public OrderItem() {
     }
 
+    public OrderItem(ProjectSystems.Restourant.Entitis.MenuItem menuItem, Integer quantity) {
+    }
+
     public OrderItem(MenuItem menuItem, int quantity) {
     }
 
@@ -65,5 +68,56 @@ public class OrderItem {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-}
 
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "dish_id")
+    private Dish dish;
+
+
+    @JoinColumn(name = "order_id", nullable = false)
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_item_id", nullable = false)
+    private MenuItem menuItem;
+
+    @Column(nullable = false)
+
+//element na Order
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+
+    public long getDishId() {
+        return 0;
+    }
+
+    public void setDish(Dish dish) {
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public MenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public void setMenuItem(MenuItem menuItem) {
+        this.menuItem = menuItem;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+}

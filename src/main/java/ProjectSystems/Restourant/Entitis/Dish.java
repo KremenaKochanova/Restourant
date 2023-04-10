@@ -2,6 +2,8 @@ package ProjectSystems.Restourant.Entitis;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "dishes")
@@ -9,8 +11,12 @@ import javax.persistence.Table;
 public class Dish {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Integer id;
+
+    @NotBlank
+    @Size(min = 5,max = 30)
     @Column(nullable = false, unique = true)
     private String name;
     @Column(nullable = false)
@@ -21,12 +27,14 @@ public class Dish {
     public Dish() {
     }
 
+    public Dish(String name, String type, double price) {
+    }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -54,10 +62,14 @@ public class Dish {
         this.type = type;
     }
 
-    public Dish(Long id, String name, Double price, String type) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.type = type;
+    @Override
+    public String toString() {
+        return "Dish{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
+
